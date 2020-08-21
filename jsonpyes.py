@@ -53,7 +53,8 @@ Instructions:
     3. After validating successfully, then import data to ElasticSearch
 """
 
-es = Elasticsearch(['http://localhost:9200'], verify_certs=True)
+#es = Elasticsearch(['http://localhost:9200'], verify_certs=True)
+es = Elasticsearch(['https://localhost:9200'], http_auth=('tynskid', 'Nicksk8es@8090'),verify_certs=False)
 
 def show_version():
     print(version)
