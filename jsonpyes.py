@@ -440,7 +440,7 @@ def run():
             if flag == True:
                 print("All raw JSON data valid!")
                 
-            es = Elasticsearch([bulk], verify_certs=True)
+            es = Elasticsearch([bulk], http_auth=('tynskid', 'Nicksk8es@8090'),verify_certs=False)
             # read JSON data
             with open(data, 'r') as f:
                 for line in f:
@@ -455,7 +455,7 @@ def run():
 
         #### 2.2) import, no check, no multi-threads
         if ("check" not in process_jobs) and ("import" in process_jobs) and ("thread" not in process_jobs):
-            es = Elasticsearch([bulk], verify_certs=True)
+            es = Elasticsearch([bulk], http_auth=('tynskid', 'Nicksk8es@8090'),verify_certs=False)
             # read JSON data
             with open(data, 'r') as f:
                 for line in f:
@@ -478,7 +478,7 @@ def run():
             # if lines < 1024, it will only use 1 thread to finish this job, no matter how many you want
             if lines < 1024:
             #if lines < 4:                                              # Only for debugging 
-                es = Elasticsearch([bulk], verify_certs=True)
+                es = Elasticsearch([bulk],http_auth=('tynskid', 'Nicksk8es@8090'),verify_certs=False)
                 # read JSON data
                 with open(data, 'r') as f:
                     for line in f:
@@ -494,7 +494,7 @@ def run():
                 for i in start_stop_line_list:
                     #t = StoppableThread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
                     t = threading.Thread(target=worker_import_to_es_for_threading, 
-                                         args=(data, i['start'], i['stop'], Elasticsearch([bulk], verify_certs=True), index, doc_type, )
+                                         args=(data, i['start'], i['stop'], Elasticsearch([bulk],http_auth=('tynskid', 'Nicksk8es@8090'),verify_certs=False), index, doc_type, )
                     )
                     threads.append(t)
                     t.start()
@@ -534,7 +534,7 @@ def run():
             # if lines < 1024, it will only use 1 thread to finish this job, no matter how many you want
             if lines < 1024:
             #if lines < 4:                                              # Only for debugging 
-                es = Elasticsearch([bulk], verify_certs=True)
+                es = Elasticsearch([bulk], http_auth=('tynskid', 'Nicksk8es@8090'),verify_certs=False)
                 # read JSON data
                 with open(data, 'r') as f:
                     for line in f:
@@ -553,7 +553,7 @@ def run():
                 for i in start_stop_line_list:
                     #t = StoppableThread(target=worker_import_to_es_for_threading, args=(data, i['start'], i['stop']))
                     t = threading.Thread(target=worker_import_to_es_for_threading, 
-                                         args=(data, i['start'], i['stop'], Elasticsearch([bulk], verify_certs=True), index, doc_type, )
+                                         args=(data, i['start'], i['stop'], Elasticsearch([bulk], http_auth=('tynskid', 'Nicksk8es@8090'),verify_certs=False), index, doc_type, )
                     )
                     threads.append(t)
                     t.start()
